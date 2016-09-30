@@ -8,11 +8,15 @@
  */
 
 import React, { PropTypes } from 'react';
-import Header from './Header';
+import AppBar from 'material-ui/AppBar';
 
 function Layout(props) {
   return (
     <div>
+    <AppBar
+    title={props.title}
+    showMenuIconButton={false}
+  />
     </div>
   );
 }
