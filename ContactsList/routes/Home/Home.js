@@ -10,16 +10,23 @@
 import React, { PropTypes } from 'react';
 import Layout from '../../components/Layout';
 import config from '../../config.js';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends React.Component {
 
+  title(){
+    return config.appTitle;
+  }
+
   componentDidMount() {
-    document.title = config.appTitle;
+    document.title = this.title();
   }
 
   render() {
     return (
-      <Layout/>
+      <MuiThemeProvider>
+        <Layout title={this.title()}/>
+      </MuiThemeProvider>
     );
   }
 
