@@ -1,2 +1,3 @@
-ContactList/public/*
-ContactList/node_modules
+ContactsList/public/index.html
+ContactsList/public/dist
+ContactsList/node_modules/
