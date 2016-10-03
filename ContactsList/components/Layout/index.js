@@ -7,4 +7,96 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-export default from './Layout';
+import React, { PropTypes } from 'react';
+import AppBar from 'material-ui/AppBar';
+import {List, ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import tile from '../../public/tile.png'
+import ShowMoreIcon from 'material-ui/svg-icons/notification/more';
+import styles from './styles.css'
+import ContactsService from '../../core/contactsService.js'
+import SeeMoreBar from '../SeeMoreBar/index.jsx'
+
+
+const Layout = ({title}) =>
+  <div className={styles.container}>
+    <AppBar
+      title={title}
+      showMenuIconButton={false}
+    />
+    <ContactsContainer pageSize={20}/>
+  </div>
+
+class ContactsContainer extends React.Component{
+
+  constructor(){
+    super()
+    this.state ={
+      contacts: [],
+      currentPage: 0
+    }
+  }
+
+  componentWillMount(){
+    this.getMoreContactPreviews();
+  }
+
+  getMoreContactPreviews(){
+    const {pageSize} = this.props
+    this.setState({
+      contacts: [
+        ...this.state.contacts,
+        ...ContactsService.getContactPreviews(this.state.currentPage * pageSize, pageSize)
+      ],
+      currentPage: this.state.currentPage + 1
+    })
+  }
+
+  openContact(contactId){
+    //TODO complete
+    alert("This will open the contact whose ID is: " + contactId)
+  }
+
+  render(){
+    return(
+      <div className={styles.list}>
+        <ContactsList
+          contacts={this.state.contacts}
+          onContactClickHandler={this.openContact.bind(this)}
+        />
+        <SeeMoreBar onClickHandler={this.getMoreContactPreviews.bind(this)}/>
+      </div>
+    )
+  }
+
+}
+
+class ContactsList extends React.Component{
+
+  getContactsListItems(){
+    return this.props.contacts.map( c =>
+      <ListItem
+        key={c.id}
+        primaryText={c.name}
+        secondaryText={c.phone}
+        leftAvatar={<Avatar src={c.avatar} />}
+        rightIcon={<ShowMoreIcon/>}
+        onClick={() => this.props.onContactClickHandler(c.id)}
+      />
+    )
+  }
+
+  render(){
+    return(
+      <List>
+        {this.getContactsListItems()}
+      </List>
+    )
+  }
+
+}
+
+
+Layout.propTypes = { className: PropTypes.string };
+
+export default Layout;

@@ -9,7 +9,7 @@
   },
   {
     "path": "/error",
-    "component": "./routes/Error",
+    "component": "./routes/GetStarted",
     "chunk": "main"
   },
   {
