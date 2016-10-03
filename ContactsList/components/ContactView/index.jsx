@@ -55,12 +55,23 @@ class ContactView extends React.Component{
     )
   }
 
+  getChips(texts){
+    return texts.map(t => this.getChip(t))
+  }
+
   render(){
 
     const {
-      email,
-      picture
+      birthday,
+      name,
+      picture,
+      phone,
+      mobilePhone,
+      address,
+      notes
     } = this.props.contact
+
+    const theTags = this.props.contact.tags
 
     return(
       <Dialog
@@ -69,6 +80,7 @@ class ContactView extends React.Component{
           onRequestClose={() => alert('le')}
           actions={[this.getBackButton()]}
           contentStyle={{maxWidth:'700px'}}
+          autoScrollBodyContent={true}
       >
         <Card>
           <CardTitle>
@@ -78,11 +90,16 @@ class ContactView extends React.Component{
             />
           </CardTitle>
           <CardText>
-            {this.getTextField("Nombre","value")}
-            {this.getTextField("Nombre","MultiLine with rows: 2 and rowsMax: 4",true)}
+            {this.getTextField("First Name",name? name.first:"")}
+            {this.getTextField("Last Name",name? name.last:"")}
+            {this.getTextField("Birthdate",birthday)}
+            {this.getTextField("Address",address)}
+            {this.getTextField("Phone",phone)}
+            {this.getTextField("Mobile Phone",mobilePhone)}
+            {this.getTextField("Notes",notes,true)}
           </CardText>
           <div className = {styles.tags}>
-            {this.getChip("lala")}
+            {this.getChips(theTags?theTags:[])}
           </div>
         </Card>
       </Dialog>

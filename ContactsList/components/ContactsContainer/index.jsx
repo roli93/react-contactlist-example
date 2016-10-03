@@ -6,7 +6,7 @@ import ShowMoreIcon from 'material-ui/svg-icons/notification/more';
 import styles from './styles.css'
 import ContactsService from '../../core/contactsService.js'
 import SeeMoreBar from '../SeeMoreBar/index.jsx'
-import ContactView from '../ContactViewContainer/index.jsx'
+import ContactView from '../ContactView/index.jsx'
 
 class ContactsContainer extends React.Component{
 
