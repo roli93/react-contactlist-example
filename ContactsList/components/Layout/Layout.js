@@ -22,21 +22,66 @@ const Layout = ({title}) =>
       title={title}
       showMenuIconButton={false}
     />
-    <ContactsList/>
+    <ContactsContainer/>
   </div>
 
-const ContactsList = () =>
-  <div className={styles.list}>
-    <List>
+class ContactsContainer extends React.Component{
+
+  constructor(){
+    super()
+    this.state ={
+      contacts: []
+    }
+  }
+
+  componentWillMount(){
+    this.setState({
+      contacts:[
+        {
+          "id": "57ee79e2cc08a67d804678ef",
+          "name": "Jonh Doe",
+          "phone": "+1 (891) 447-3238"
+        }
+      ]
+    })
+  }
+
+  render(){
+    return(
+      <div className={styles.list}>
+        <ContactsList contacts={this.state.contacts}/>
+        <SeeMoreBar/>
+      </div>
+    )
+  }
+
+}
+
+class ContactsList extends React.Component{
+
+  getContactsListItems(){
+    return this.props.contacts.map( c =>
       <ListItem
-        primaryText="Brendan Lim"
-        secondaryText='1560078965'
-        leftAvatar={<Avatar src={tile} />}
+        key={c.id}
+        primaryText={c.name}
+        secondaryText={c.phone}
+        leftAvatar={<Avatar src={c.avatar} />}
         rightIcon={<ShowMoreIcon/>}
       />
-    </List>
-    <SeeMoreBar/>
-  </div>
+    )
+  }
+
+  render(){
+    return(
+      <List>
+        {this.getContactsListItems()}
+      </List>
+    )
+  }
+
+}
+
+
 
 const SeeMoreBar = () => <div className={styles.seemore}>See More </div>
 

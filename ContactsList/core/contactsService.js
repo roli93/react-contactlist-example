@@ -2,7 +2,8 @@ const preview = (contact) => {
   return{
     id: contact._id,
     name: contact.name.first + " " + contact.name.last,
-    phone: contact.phone
+    phone: contact.phone,
+    avatar: contact.picture
   }
 }
 
