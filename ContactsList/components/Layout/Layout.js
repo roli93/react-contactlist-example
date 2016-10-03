@@ -14,6 +14,7 @@ import Avatar from 'material-ui/Avatar';
 import tile from '../../public/tile.png'
 import ShowMoreIcon from 'material-ui/svg-icons/notification/more';
 import styles from './Layout.css'
+import ContactsService from '../../core/contactsService.js'
 
 
 const Layout = ({title}) =>
@@ -22,7 +23,7 @@ const Layout = ({title}) =>
       title={title}
       showMenuIconButton={false}
     />
-    <ContactsContainer/>
+    <ContactsContainer pageSize={20}/>
   </div>
 
 class ContactsContainer extends React.Component{
@@ -30,19 +31,23 @@ class ContactsContainer extends React.Component{
   constructor(){
     super()
     this.state ={
-      contacts: []
+      contacts: [],
+      currentPage: 0
     }
   }
 
   componentWillMount(){
+    this.getMoreContactPreviews();
+  }
+
+  getMoreContactPreviews(){
+    const {pageSize} = this.props
     this.setState({
-      contacts:[
-        {
-          "id": "57ee79e2cc08a67d804678ef",
-          "name": "Jonh Doe",
-          "phone": "+1 (891) 447-3238"
-        }
-      ]
+      contacts: [
+        ...this.state.contacts,
+        ...ContactsService.getContactPreviews(this.state.currentPage * pageSize, pageSize)
+      ],
+      currentPage: this.state.currentPage + 1
     })
   }
 
@@ -50,7 +55,7 @@ class ContactsContainer extends React.Component{
     return(
       <div className={styles.list}>
         <ContactsList contacts={this.state.contacts}/>
-        <SeeMoreBar/>
+        <SeeMoreBar onClickHandler={this.getMoreContactPreviews.bind(this)}/>
       </div>
     )
   }
@@ -83,7 +88,10 @@ class ContactsList extends React.Component{
 
 
 
-const SeeMoreBar = () => <div className={styles.seemore}>See More </div>
+const SeeMoreBar = ({onClickHandler}) =>
+  <div className={styles.seemore} onClick={onClickHandler}>
+    See More
+  </div>
 
 
 Layout.propTypes = { className: PropTypes.string };
