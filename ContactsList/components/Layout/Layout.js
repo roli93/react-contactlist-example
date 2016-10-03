@@ -9,17 +9,37 @@
 
 import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
+import {List, ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import tile from '../../public/tile.png'
+import ShowMoreIcon from 'material-ui/svg-icons/notification/more';
+import styles from './Layout.css'
 
-function Layout(props) {
-  return (
-    <div>
+
+const Layout = ({title}) =>
+  <div className={styles.container}>
     <AppBar
-    title={props.title}
-    showMenuIconButton={false}
-  />
-    </div>
-  );
-}
+      title={title}
+      showMenuIconButton={false}
+    />
+    <ContactsList/>
+  </div>
+
+const ContactsList = () =>
+  <div className={styles.list}>
+    <List>
+      <ListItem
+        primaryText="Brendan Lim"
+        secondaryText='1560078965'
+        leftAvatar={<Avatar src={tile} />}
+        rightIcon={<ShowMoreIcon/>}
+      />
+    </List>
+    <SeeMoreBar/>
+  </div>
+
+const SeeMoreBar = () => <div className={styles.seemore}>See More </div>
+
 
 Layout.propTypes = { className: PropTypes.string };
 
