@@ -12,7 +12,7 @@ class ContactView extends React.Component{
   constructor(){
     super();
     this.state = {
-      open: false,
+      open: false, 
     };
   }
 
