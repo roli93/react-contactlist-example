@@ -6,14 +6,16 @@ import ShowMoreIcon from 'material-ui/svg-icons/notification/more';
 import styles from './styles.css'
 import ContactsService from '../../core/contactsService.js'
 import SeeMoreBar from '../SeeMoreBar/index.jsx'
- 
+import ContactView from '../ContactViewContainer/index.jsx'
+
 class ContactsContainer extends React.Component{
 
   constructor(){
     super()
     this.state ={
       contacts: [],
-      currentPage: 0
+      currentPage: 0,
+      currentContact: {}
     }
   }
 
@@ -33,18 +35,25 @@ class ContactsContainer extends React.Component{
   }
 
   openContact(contactId){
-    //TODO complete
-    alert("This will open the contact whose ID is: " + contactId)
+    this.setState({
+      ...this.state,
+      currentContact: ContactsService.getContact(contactId)
+    })
+    this.refs.contactView.open()
   }
 
   render(){
     return(
-      <div className={styles.list}>
+      <div>
         <ContactsList
           contacts={this.state.contacts}
           onContactClickHandler={this.openContact.bind(this)}
         />
         <SeeMoreBar onClickHandler={this.getMoreContactPreviews.bind(this)}/>
+        <ContactView
+          ref="contactView"
+          contact={this.state.currentContact}
+        />
       </div>
     )
   }

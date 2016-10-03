@@ -11,8 +11,9 @@ import React, { PropTypes } from 'react';
 import Layout from '../../components/Layout';
 import config from '../../config.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ContactsContainer from '../../components/ContactsContainer/index.jsx'
 
-class App extends React.Component {
+class List extends React.Component {
 
   title(){
     return config.appTitle;
@@ -25,11 +26,13 @@ class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
-        <Layout title={this.title()}/>
+        <Layout title={this.title()}>
+          <ContactsContainer pageSize={20}/>
+        </Layout>
       </MuiThemeProvider>
     );
   }
 
 }
 
-export default App;
+export default List;

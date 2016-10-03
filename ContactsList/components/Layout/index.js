@@ -9,19 +9,17 @@
 
 import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
-import ContactsContainer from '../ContactsContainer/index.jsx'
 import styles from './styles.css'
 
-const Layout = ({title}) =>
+const Layout = ({title,children}) =>
   <div className={styles.container}>
     <AppBar
       title={title}
       showMenuIconButton={false}
     />
-    <ContactsContainer pageSize={20}/>
+    <div className={styles.content}>
+      {children}
+    </div>
   </div>
-
-
-Layout.propTypes = { className: PropTypes.string };
 
 export default Layout;

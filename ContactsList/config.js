@@ -22,7 +22,7 @@ const config = {
     branch: 'gh-pages',
   },
 
-  appTitle:'Contacts List'
+  appTitle:'Contacts'
 
 };
 

@@ -12,6 +12,10 @@ class ContactsService{
     return this.contacts.map(c => preview(c)).slice(offset,offset+max)
   }
 
+  getContact(contactId){
+    return this.contacts.find(c => c._id === contactId)
+  }
+
   constructor(){
     this.contacts = [
       {
