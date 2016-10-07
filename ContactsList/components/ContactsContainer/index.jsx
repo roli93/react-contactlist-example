@@ -1,13 +1,10 @@
 import React, { PropTypes } from 'react';
-import {List, ListItem} from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import tile from '../../public/tile.png'
-import ShowMoreIcon from 'material-ui/svg-icons/notification/more';
 import styles from './styles.css'
 import ContactsService from '../../core/contactsService.js'
 import SeeMoreBar from '../SeeMoreBar/index.jsx'
 import ContactView from '../ContactView/index.jsx'
 import TextField from 'material-ui/TextField'
+import ContactsList from '../ContactsList/index.jsx'
 
 class ContactsContainer extends React.Component{
 
@@ -80,31 +77,6 @@ class ContactsContainer extends React.Component{
           contact={this.state.currentContact}
         />
       </div>
-    )
-  }
-
-}
-
-class ContactsList extends React.Component{
-
-  getContactsListItems(){
-    return this.props.contacts.map( c =>
-      <ListItem
-        key={c.id}
-        primaryText={c.name}
-        secondaryText={c.phone}
-        leftAvatar={<Avatar src={c.avatar} />}
-        rightIcon={<ShowMoreIcon/>}
-        onClick={() => this.props.onContactClickHandler(c.id)}
-      />
-    )
-  }
-
-  render(){
-    return(
-      <List className={styles.contactsList}>
-        {this.getContactsListItems()}
-      </List>
     )
   }
 

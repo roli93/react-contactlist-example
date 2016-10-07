@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 import styles from './styles.css'
+import {List, ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import ShowMoreIcon from 'material-ui/svg-icons/notification/more';
 
 class ContactsList extends React.Component{
 
@@ -18,13 +21,12 @@ class ContactsList extends React.Component{
 
   render(){
     return(
-      <List>
+      <List className={styles.contactsList}>
         {this.getContactsListItems()}
       </List>
     )
   }
 
 }
-
 
 export default ContactsList;
