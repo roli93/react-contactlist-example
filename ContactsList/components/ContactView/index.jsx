@@ -9,28 +9,12 @@ import Chip from 'material-ui/Chip';
 
 class ContactView extends React.Component{
 
-  constructor(){
-    super();
-    this.state = {
-      open: false, 
-    };
-  }
-
-  open(){
-    this.setState({open: true});
-
-  }
-
-  close(){
-    this.setState({open: false});
-  }
-
   getBackButton(){
     return(
       <FlatButton
         label="Back"
         primary={true}
-        onClick={this.close.bind(this)}
+        onClick={this.props.onContactViewClose}
       />
     )
   }
@@ -76,8 +60,7 @@ class ContactView extends React.Component{
     return(
       <Dialog
           modal={false}
-          open={this.state.open}
-          onRequestClose={() => alert('le')}
+          open={this.props.open}
           actions={[this.getBackButton()]}
           contentStyle={{maxWidth:'700px'}}
           autoScrollBodyContent={true}
