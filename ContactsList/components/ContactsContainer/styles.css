@@ -3,3 +3,13 @@
   background-color: white;
   margin: 0 auto;
 }
+
+.flexContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactsList{
+  width: 100%;
+}

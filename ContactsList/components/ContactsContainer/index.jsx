@@ -63,7 +63,7 @@ class ContactsContainer extends React.Component{
 
   render(){
     return(
-      <div>
+      <div className={styles.flexContainer}>
         <TextField
           hintText="Type a name"
           onChange={this.filterTextChangeHandler.bind(this)}
@@ -102,7 +102,7 @@ class ContactsList extends React.Component{
 
   render(){
     return(
-      <List>
+      <List className={styles.contactsList}>
         {this.getContactsListItems()}
       </List>
     )
