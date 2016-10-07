@@ -6,6 +6,7 @@ import {Card, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
+import {lightBlue500,grey50} from 'material-ui/styles/colors';
 
 class ContactView extends React.Component{
 
@@ -33,14 +34,21 @@ class ContactView extends React.Component{
     )
   }
 
-  getChip(text){
+  getChipTag(text){
     return(
-      <Chip>{text}</Chip>
+      <div className={styles.tag}>
+        <Chip
+          backgroundColor={lightBlue500}
+          labelColor={grey50}
+        >
+          {text}
+        </Chip>
+      </div>
     )
   }
 
-  getChips(texts){
-    return texts.map(t => this.getChip(t))
+  getChipTags(texts){
+    return texts.map(t => this.getChipTag(t))
   }
 
   render(){
@@ -82,7 +90,7 @@ class ContactView extends React.Component{
             {this.getTextField("Notes",notes,true)}
           </CardText>
           <div className = {styles.tags}>
-            {this.getChips(theTags?theTags:[])}
+            {this.getChipTags(theTags?theTags:[])}
           </div>
         </Card>
       </Dialog>

@@ -1,4 +1,10 @@
 .tags{
       padding-left: 1em;
       padding-bottom: 2em;
+      display: flex;
+      flex-wrap: wrap;
+}
+
+.tag{
+  margin-right:6px;
 }
