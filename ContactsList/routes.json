@@ -9,12 +9,12 @@
   },
   {
     "path": "/error",
-    "component": "./routes/GetStarted",
+    "component": "./routes/Contact",
     "chunk": "main"
   },
   {
     "path": "/get-started",
-    "component": "./routes/GetStarted"
+    "component": "./routes/Contact"
   },
   {
     "path": "/tasks/:status(pending|completed)?",
